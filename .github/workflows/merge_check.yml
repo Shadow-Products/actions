@@ -2,11 +2,10 @@ name: Run on PR Merge
 
 on:
   pull_request:
-    types: [closed]
+  merge_group:
 
 jobs:
   on-merge:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     container: python:3.12.4
     steps:
