@@ -19,6 +19,6 @@ jobs:
       
       - name: Run migration conflicts check
         run: |
-          python manage.py makemigrations --check
+          python myproject/manage.py makemigrations --check
         env:
           DJANGO_SETTINGS_MODULE: myproject/myapp.settings
