@@ -6,6 +6,8 @@ on:
 
 jobs:
   on-merge:
+    name: Premerge
+
     runs-on: ubuntu-latest
     container: python:3.12.4
     steps:
