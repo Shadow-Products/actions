@@ -18,7 +18,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Log
-        run: echo "message"
-
-        
+      - name: Run migration conflicts check
+        run: |
+          python myproject/manage.py makemigrations --check
+        env:
+          DJANGO_SETTINGS_MODULE: myproject.settings
+          PYTHONPATH: ${{ github.workspace }}
