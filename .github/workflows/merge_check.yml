@@ -21,4 +21,4 @@ jobs:
         run: |
           python myproject/manage.py makemigrations --check
         env:
-          DJANGO_SETTINGS_MODULE: myproject/myapp.settings
+          DJANGO_SETTINGS_MODULE: myproject/myproject.settings
