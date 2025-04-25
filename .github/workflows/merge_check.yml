@@ -23,3 +23,12 @@ jobs:
         env:
           DJANGO_SETTINGS_MODULE: myproject.settings
           PYTHONPATH: ${{ github.workspace }}
+
+  another-check:
+    name: Checking
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: OK
+        run: |
+          echo "OK"
