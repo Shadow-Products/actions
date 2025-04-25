@@ -1,12 +1,10 @@
 name: Run on PR Merge
 
-on: 
-  pull_request:
-  merge_group:
+on: merge_group
 
 
 jobs:
-  on-merge:
+  validate-pr:
     name: Premerge
 
     runs-on: ubuntu-latest
