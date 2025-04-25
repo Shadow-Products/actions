@@ -1,7 +1,6 @@
 name: Run on PR Merge
 
 on: 
-  pull_request:
   merge_group:
 
 
