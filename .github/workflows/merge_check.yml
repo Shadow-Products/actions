@@ -1,26 +1,25 @@
-# name: Run on PR Merge
+name: Run on PR Merge
 
-# on:
-#   merge_group:
+on: pull_request
 
 
-# jobs:
-#   on-merge:
-#     name: Premerge
+jobs:
+  on-merge:
+    name: Premerge
 
-#     runs-on: ubuntu-latest
-#     container: python:3.12.4
-#     steps:
-#       - uses: actions/checkout@v2
+    runs-on: ubuntu-latest
+    container: python:3.12.4
+    steps:
+      - uses: actions/checkout@v2
 
-#       - name: Install dependencies
-#         run: |
-#           python -m pip install --upgrade pip
-#           pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-#       - name: Run migration conflicts check
-#         run: |
-#           python myproject/manage.py makemigrations --check
-#         env:
-#           DJANGO_SETTINGS_MODULE: myproject.settings
-#           PYTHONPATH: ${{ github.workspace }}
+      - name: Run migration conflicts check
+        run: |
+          python myproject/manage.py makemigrations --check
+        env:
+          DJANGO_SETTINGS_MODULE: myproject.settings
+          PYTHONPATH: ${{ github.workspace }}
