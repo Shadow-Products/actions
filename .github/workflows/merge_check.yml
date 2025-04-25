@@ -4,8 +4,8 @@ on: merge_group
 
 
 jobs:
-  validate-pr:
-    name: Testing
+  check-for-migrations-confilcts:
+    name: Check For Migrations Conflicts
 
     runs-on: ubuntu-latest
     container: python:3.12.4
