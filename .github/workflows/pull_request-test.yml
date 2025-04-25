@@ -1,26 +1,47 @@
 name: Test
 
-on: pull_request
+on: 
+  pull_request:
+    jobs:
+      quality-assurance-test:
+        name: Testing
 
+        runs-on: ubuntu-latest
+        container: python:3.12.4
 
-jobs:
-  quality-assurance-test:
-    name: Testing
+        steps:
+          - uses: actions/checkout@v2
 
-    runs-on: ubuntu-latest
-    container: python:3.12.4
+          - name: Install dependencies
+            run: |
+              python -m pip install --upgrade pip
+              pip install -r requirements.txt
 
-    steps:
-      - uses: actions/checkout@v2
+          - name: Run migration conflicts check
+            run: |
+              python myproject/manage.py makemigrations --check
+            env:
+              DJANGO_SETTINGS_MODULE: myproject.settings
+              PYTHONPATH: ${{ github.workspace }}
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+  merge_group:
+    jobs:
+      on-merge:
+        name: Premerge
 
-      - name: Run migration conflicts check
-        run: |
-          python myproject/manage.py makemigrations --check
-        env:
-          DJANGO_SETTINGS_MODULE: myproject.settings
-          PYTHONPATH: ${{ github.workspace }}
+        runs-on: ubuntu-latest
+        container: python:3.12.4
+        steps:
+          - uses: actions/checkout@v2
+
+          - name: Install dependencies
+            run: |
+              python -m pip install --upgrade pip
+              pip install -r requirements.txt
+
+          - name: Run migration conflicts check
+            run: |
+              python myproject/manage.py makemigrations --check
+            env:
+              DJANGO_SETTINGS_MODULE: myproject.settings
+              PYTHONPATH: ${{ github.workspace }}
