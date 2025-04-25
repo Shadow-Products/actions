@@ -1,15 +1,13 @@
-name: Test
+name: Another Check
 
-on: pull_request
-
+on: [pull_request, merge_group]
 
 jobs:
-  validate-pr:
-    name: Testing
+  another-check:
+    name: Checking
 
     runs-on: ubuntu-latest
     container: python:3.12.4
-
     steps:
       - uses: actions/checkout@v2
 
@@ -20,7 +18,7 @@ jobs:
 
       - name: Run migration conflicts check
         run: |
-          echo "success"
+          echo "ok"
         env:
           DJANGO_SETTINGS_MODULE: myproject.settings
           PYTHONPATH: ${{ github.workspace }}
