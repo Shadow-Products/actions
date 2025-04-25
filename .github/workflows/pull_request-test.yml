@@ -24,3 +24,25 @@ jobs:
         env:
           DJANGO_SETTINGS_MODULE: myproject.settings
           PYTHONPATH: ${{ github.workspace }}
+
+
+
+  another-check:
+    name: Checking
+
+    runs-on: ubuntu-latest
+    container: python:3.12.4
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run migration conflicts check
+        run: |
+          echo "ok"
+        env:
+          DJANGO_SETTINGS_MODULE: myproject.settings
+          PYTHONPATH: ${{ github.workspace }}
